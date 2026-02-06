@@ -22,6 +22,7 @@ public class CommandListener extends ListenerAdapter {
         commandMap.put("ping", new PingCommand());
         commandMap.put("mason", new MasonCommand());
         commandMap.put("info", new InfoCommand());
+        commandMap.forEach((name, command) -> log.debug("Registered command: {}", name));
         log.info("Registered {} commands", commandMap.size());
     }
 

@@ -3,7 +3,7 @@ import listeners.CommandListener;import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.interactions.commands.OptionType;import net.dv8tion.jda.api.interactions.commands.build.Commands;import net.dv8tion.jda.api.requests.GatewayIntent;
-import org.slf4j.LoggerFactory;
+import net.dv8tion.jda.api.utils.MemberCachePolicy;import net.dv8tion.jda.api.utils.cache.CacheFlag;import org.slf4j.LoggerFactory;
 
 import java.util.EnumSet;
 import java.util.logging.Logger;
@@ -27,6 +27,7 @@ public class DiscordBOT {
             jda = JDABuilder.createDefault(botToken)
                     .enableIntents(EnumSet.allOf(GatewayIntent.class))
                     .addEventListeners(new CommandListener())
+                    .disableCache(CacheFlag.ACTIVITY)
                     .build();
 
             jda.awaitReady();
@@ -49,8 +50,8 @@ public class DiscordBOT {
         jda.updateCommands()
                 .addCommands(
                         Commands.slash("ping", "Check bot's latency"),
-                        Commands.slash("mason", "Makes the coolest music")
-//                        Commands.slash("Testing", "Lets see if this works")
+                        Commands.slash("mason", "Makes the coolest music"),
+                        Commands.slash("info", "Display information about BOT")
                                 .addOption(OptionType.STRING, "text", "The text to echo", false)
 
                 ).queue(success -> log.info("Slash commands registered successfully"),

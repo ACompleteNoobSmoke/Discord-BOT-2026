@@ -8,7 +8,7 @@ import java.awt.*;
 public class InfoCommand implements Command {
     @Override
     public String getName() {
-        return "info";
+        return "information";
     }
 
     @Override
@@ -20,7 +20,7 @@ public class InfoCommand implements Command {
     public void executeSlash(SlashCommandInteractionEvent event) {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setTitle("BASED BOT Information");
-        builder.setDescription("This is a bot created by Mason for the BASED BOT project.");
+        builder.setDescription("This is a bot created by The BASEDONE for the BASED BOT project.");
         builder.setColor(new Color(148, 0, 211));
         builder.addField("Author", "ACompleteNoobSmoke", false);
         builder.addField("Language", "Java", true);
