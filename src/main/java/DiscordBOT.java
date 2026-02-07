@@ -50,11 +50,12 @@ public class DiscordBOT {
         jda.updateCommands()
                 .addCommands(
                         Commands.slash("ping", "Check bot's latency"),
-                        Commands.slash("mason", "Makes the coolest music"),
                         Commands.slash("info", "Display information about BOT")
-                                .addOption(OptionType.STRING, "text", "The text to echo", false)
-
-                ).queue(success -> log.info("Slash commands registered successfully"),
+                ).addCommands(
+                        Commands.slash("play", "plays videos from YouTube")
+                                .addOption(OptionType.STRING, "query", "The query to search for", true)
+                )
+        .queue(success -> log.info("Slash commands registered successfully"),
                         failure -> log.error("Failed to register slash commands: {}", failure.getMessage()));
     }
 }

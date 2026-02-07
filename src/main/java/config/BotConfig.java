@@ -26,4 +26,8 @@ public class BotConfig {
     public static String getBOTToken() {
         return properties.getProperty("botToken");
     }
+    public static String getYouTubeToken() {
+        return properties.getProperty("youTubeToken");
+    }
+    public static String getApplicationName() {return properties.getProperty("applicationName");}
 }

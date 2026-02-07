@@ -2,8 +2,8 @@ package listeners;
 
 import commands.Command;
 import commands.InfoCommand;
-import commands.MasonCommand;
 import commands.PingCommand;
+import commands.PlayCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class CommandListener extends ListenerAdapter {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(CommandListener.class);
@@ -20,7 +19,7 @@ public class CommandListener extends ListenerAdapter {
 
     public CommandListener() {
         commandMap.put("ping", new PingCommand());
-        commandMap.put("mason", new MasonCommand());
+        commandMap.put("play", new PlayCommand());
         commandMap.put("info", new InfoCommand());
         commandMap.forEach((name, command) -> log.debug("Registered command: {}", name));
         log.info("Registered {} commands", commandMap.size());
