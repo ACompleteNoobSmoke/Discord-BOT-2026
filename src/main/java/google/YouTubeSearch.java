@@ -16,6 +16,7 @@ public class YouTubeSearch {
     private static final String API_KEY = BotConfig.getYouTubeToken();
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(YouTubeSearch.class);
     private static final Long MAX_RESULTS = 20L;
+    private static final String DEFAULT_VIDEO_ID = "dwLCjZVEtpE";
 
 
     private static YouTube getYouTube() {
@@ -38,14 +39,17 @@ public class YouTubeSearch {
                     .setQ(searchQuery)
                     .setMaxResults(MAX_RESULTS)
                     .execute();
-            int random = new Random().nextInt(0, (int) (MAX_RESULTS + 1));
-            String videoId = response.getItems().get(random).getId().getVideoId();
+            //int random = new Random().nextInt(0, (int) (MAX_RESULTS + 1));
+            String videoId = response.getItems().stream().filter(res -> res.getId().getVideoId() != null)
+                    .map(res -> res.getId().getVideoId())
+                    .findFirst()
+                    .orElse(DEFAULT_VIDEO_ID);
             log.info("Selected video ID: {}", videoId);
             return videoId;
         } catch (IOException e) {
             log.error("Something went wrong with the YouTube search {}", e);
         }
-        return null;
+        return DEFAULT_VIDEO_ID;
     }
 
     static void main() throws IOException {

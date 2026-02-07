@@ -18,6 +18,6 @@ public class PingCommand  implements Command{
     public void executeSlash(SlashCommandInteractionEvent event) {
         long ping = event.getJDA().getGatewayPing();
         event.getJDA().getUsers().forEach(user -> System.out.println(user.getName()));
-        event.reply("Pong! Gateway ping: " + ping + "ms").queue();
+        event.reply("Pong! Gateway ping: " + ping + "ms").setEphemeral(true).queue();
     }
 }

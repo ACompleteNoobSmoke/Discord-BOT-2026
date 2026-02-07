@@ -26,6 +26,6 @@ public class InfoCommand implements Command {
         builder.addField("Language", "Java", true);
         builder.addField("Library", "JDA (Java Discord API)", true);
         builder.setFooter("Created Just For Fun!");
-        event.replyEmbeds(builder.build()).queue();
+        event.replyEmbeds(builder.build()).setEphemeral(true).queue();
     }
 }
