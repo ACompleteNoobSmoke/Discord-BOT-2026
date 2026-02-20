@@ -30,4 +30,5 @@ public class BotConfig {
         return properties.getProperty("youTubeToken");
     }
     public static String getApplicationName() {return properties.getProperty("applicationName");}
+    public static String getSpotifyToken() {return properties.getProperty("spotifyToken"); }
 }

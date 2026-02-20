@@ -39,7 +39,6 @@ public class YouTubeSearch {
                     .setQ(searchQuery)
                     .setMaxResults(MAX_RESULTS)
                     .execute();
-            //int random = new Random().nextInt(0, (int) (MAX_RESULTS + 1));
             String videoId = response.getItems().stream().filter(res -> res.getId().getVideoId() != null)
                     .map(res -> res.getId().getVideoId())
                     .findFirst()

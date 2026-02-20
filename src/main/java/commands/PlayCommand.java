@@ -11,6 +11,7 @@ public class PlayCommand implements Command{
 
 
     private static final Logger log = LoggerFactory.getLogger(PlayCommand.class);
+    private final String VIDEO_PREFIX = "https://www.youtube.com/watch?v=";
 
     @Override
     public String getName() {
@@ -25,7 +26,7 @@ public class PlayCommand implements Command{
     @Override
     public void executeSlash(SlashCommandInteractionEvent event) {
         log.info(event.getUser().getName() + " Executed Play Command");
-        String video = YouTubeSearch.searchVideo(Objects.requireNonNull(event.getOption("query")).getAsString());
-        event.reply("https://www.youtube.com/watch?v=" + video).setEphemeral(true).queue();
+        String videoID = YouTubeSearch.searchVideo(Objects.requireNonNull(event.getOption("query")).getAsString());
+        event.reply(VIDEO_PREFIX.concat(videoID)).setEphemeral(true).queue();
     }
 }
