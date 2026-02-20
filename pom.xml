@@ -16,6 +16,7 @@
     <logback.version>1.5.25</logback.version>
     <google.api.services.version>v3-rev222-1.25.0</google.api.services.version>
     <google.oauth.client.version>1.39.0</google.oauth.client.version>
+    <jackson.version>2.15.2</jackson.version>
   </properties>
 
   <dependencies>
@@ -51,6 +52,12 @@
       <artifactId>google-oauth-client-jetty</artifactId>
       <version>${google.oauth.client.version}</version> <!-- Use the latest version -->
       <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version> <!-- Use the latest version -->
     </dependency>
 
   </dependencies>
