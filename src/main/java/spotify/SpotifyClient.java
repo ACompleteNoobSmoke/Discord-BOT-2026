@@ -1,12 +1,7 @@
 package spotify;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.json.async.NonBlockingJsonParser;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import config.BotConfig;
-import model.SpotifyResponse;
-import model.SpotifyResponses;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,13 +10,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 
 public class SpotifyClient {
