@@ -1,10 +1,13 @@
 package spotify;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import config.BotConfig;
 import model.SpotifyResponse;
 import model.SpotifyResponses;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -46,23 +49,20 @@ public class SpotifyClient {
         SpotifyClient spotifyClient = new SpotifyClient();
         ObjectMapper objectMapper = new ObjectMapper();
         String response = spotifyClient.searchSpotify("Tame Impala");
-        Map<String, Map<String, Map<String, Object>>> map = objectMapper.readValue(response, Map.class);
-        for(Map.Entry<String, Map<String, Map<String, Object>>> entry : map.entrySet()) {
-            System.out.println("KEY: " + entry.getKey());
-            System.out.println("VALUE BELOW");
-            for (Map.Entry<String, Map<String, Object>> e : entry.getValue().entrySet()) {
-                if (!e.getKey().equals("items")) continue;
-                System.out.println(e.getKey());
-                System.out.println("---------------------");
-                System.out.println(e.getValue());
-                e.getValue().entrySet().stream().forEach((k) -> {
-                    System.out.println(k.getKey());
-                    System.out.println(k.getValue());
-                    System.out.println();
-                });
-                System.out.println();
-            }
-            System.out.println();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        Map<String, Object> map = objectMapper.readValue(response, Map.class);
+        System.out.println(map.get("tracks"));
+        JSONObject root = new JSONObject(response);
+        JSONObject tracks = root.getJSONObject("tracks");
+        JSONArray items = tracks.getJSONArray("items");
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject track = items.getJSONObject(i);
+            String type = track.getString("type");     // "track"
+            String name = track.getString("name");
+            String id = track.getString("id");
+
+            System.out.println(type + ": " + name);
+            System.out.println(id);
         }
     }
 
