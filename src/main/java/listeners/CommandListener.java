@@ -1,9 +1,6 @@
 package listeners;
 
-import commands.Command;
-import commands.InfoCommand;
-import commands.PingCommand;
-import commands.PlayCommand;
+import commands.*;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -21,6 +18,7 @@ public class CommandListener extends ListenerAdapter {
         commandMap.put("ping", new PingCommand());
         commandMap.put("play", new PlayCommand());
         commandMap.put("info", new InfoCommand());
+        commandMap.put("spotify", new SpotifyCommand());
         commandMap.forEach((name, command) -> log.debug("Registered command: {}", name));
         log.info("Registered {} commands", commandMap.size());
     }

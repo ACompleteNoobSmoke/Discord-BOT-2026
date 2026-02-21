@@ -54,6 +54,10 @@ public class DiscordBOT {
                 ).addCommands(
                         Commands.slash("play", "plays videos from YouTube")
                                 .addOption(OptionType.STRING, "query", "The query to search for", true)
+                ).addCommands(
+                        Commands.slash("spotify", "Plays Tracks From Spotify")
+                                .addOption(OptionType.STRING, "artist", "The artist of the track", true)
+                                .addOption(OptionType.STRING, "title", "The title of the track", true)
                 )
         .queue(success -> log.info("Slash commands registered successfully"),
                         failure -> log.error("Failed to register slash commands: {}", failure.getMessage()));
