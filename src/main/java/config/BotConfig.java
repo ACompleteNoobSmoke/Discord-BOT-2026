@@ -1,36 +1,44 @@
 package config;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 import java.util.logging.Logger;
 
 public class BotConfig {
 
-    private static final Logger LOGGER = Logger.getLogger(BotConfig.class.getName());
-    private static final String CONFIG_FILE_PATH = "config.properties";
-    private static final Properties properties = new Properties();
+    private BotConfig() {} // Prevent instantiation
 
-    static {
-        try(InputStream inputStream = BotConfig.class.getClassLoader().getResourceAsStream(CONFIG_FILE_PATH)) {
-            if (inputStream == null) LOGGER.warning("Configuration file {} not found!");
-            else {
-                properties.load(inputStream);
-                LOGGER.info("Configuration file {} loaded successfully");
-            }
-        } catch(IOException ex) {
-            LOGGER.warning("Failed to load configuration file: {}");
-        }
+    private static final Logger LOGGER = Logger.getLogger(BotConfig.class.getName());
+    private static final String APPLICATION_NAME = "APPLICATION_NAME";
+    private static final String CLIENT_ID = "CLIENT_ID";
+    private static final String CLIENT_SECRET = "CLIENT_SECRET";
+    private static final String DISCORD_BOT_TOKEN = "DISCORD_BOT_TOKEN";
+    private static final String YOUTUBE_API_TOKEN = "YOUTUBE_API_TOKEN";
+
+    public static String getApplicationName() {
+        return requireEnv(APPLICATION_NAME);
+    }
+
+    public static String getClientID() {
+        return requireEnv(CLIENT_ID);
+    }
+
+    public static String getClientSecret() {
+        return requireEnv(CLIENT_SECRET);
     }
 
     public static String getBOTToken() {
-        return properties.getProperty("botToken");
+        return requireEnv(DISCORD_BOT_TOKEN);
     }
+
     public static String getYouTubeToken() {
-        return properties.getProperty("youTubeToken");
+        return requireEnv(YOUTUBE_API_TOKEN);
     }
-    public static String getApplicationName() {return properties.getProperty("applicationName");}
-    //public static String getSpotifyToken() {return properties.getProperty("spotifyToken"); }
-    public static String getClientID() {return properties.getProperty("clientID"); }
-    public static String getClientSecret() { return properties.getProperty("clientSecret"); }
+
+    private static String requireEnv(String key) {
+        LOGGER.info("Getting Value For ENV: {" + key + "}");
+        String value = System.getenv(key);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException("Missing required environment variable: " + key);
+        }
+        return value;
+    }
 }
