@@ -1,12 +1,14 @@
 import config.BotConfig;
-import listeners.CommandListener;import net.dv8tion.jda.api.JDA;
+import listeners.CommandListener;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.interactions.commands.OptionType;import net.dv8tion.jda.api.interactions.commands.build.Commands;import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.utils.MemberCachePolicy;import net.dv8tion.jda.api.utils.cache.CacheFlag;import org.slf4j.LoggerFactory;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import org.slf4j.LoggerFactory;
 
 import java.util.EnumSet;
-import java.util.logging.Logger;
 
 /**
  * Hello world!

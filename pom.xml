@@ -82,7 +82,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>com.noobsmoke.DiscordBOT2026.DiscordBOT</mainClass>
+              <mainClass>DiscordBOT</mainClass>
             </manifest>
           </archive>
         </configuration>
