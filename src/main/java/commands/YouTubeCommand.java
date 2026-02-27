@@ -7,15 +7,15 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class PlayCommand implements Command{
+public class YouTubeCommand implements Command{
 
 
-    private static final Logger log = LoggerFactory.getLogger(PlayCommand.class);
+    private static final Logger log = LoggerFactory.getLogger(YouTubeCommand.class);
     private final String VIDEO_PREFIX = "https://www.youtube.com/watch?v=";
 
     @Override
     public String getName() {
-        return "play";
+        return "youtube";
     }
 
     @Override

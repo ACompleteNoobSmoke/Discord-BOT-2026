@@ -52,7 +52,7 @@ public class DiscordBOT {
                         Commands.slash("ping", "Check bot's latency"),
                         Commands.slash("info", "Display information about BOT")
                 ).addCommands(
-                        Commands.slash("play", "plays videos from YouTube")
+                        Commands.slash("youtube", "plays videos from YouTube")
                                 .addOption(OptionType.STRING, "query", "The query to search for", true)
                 ).addCommands(
                         Commands.slash("spotify", "Plays Tracks From Spotify")

@@ -16,7 +16,7 @@ public class CommandListener extends ListenerAdapter {
 
     public CommandListener() {
         commandMap.put("ping", new PingCommand());
-        commandMap.put("play", new PlayCommand());
+        commandMap.put("youtube", new YouTubeCommand());
         commandMap.put("info", new InfoCommand());
         commandMap.put("spotify", new SpotifyCommand());
         commandMap.forEach((name, command) -> log.debug("Registered command: {}", name));

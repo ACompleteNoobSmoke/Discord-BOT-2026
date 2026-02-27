@@ -54,7 +54,10 @@ public class SpotifyClient {
 
     public static String searchSpotify(String artist, String title) {
         try {
-            if (expirationTimMillis == 0 || System.currentTimeMillis() >= expirationTimMillis) spotifyToken = getAPIKey();
+            if (expirationTimMillis == 0 || System.currentTimeMillis() >= expirationTimMillis) {
+                LOGGER.info("Search Spotfy -- Generating Token");
+                spotifyToken = getAPIKey();
+            }
             String searchQueryArtist = artist.replace(" ", "+");
             String searchQueryTitle = title.replace(" ", "+");
             LOGGER.info("Searching Spotify For Track: " + title + "By The Artist: " + artist);
